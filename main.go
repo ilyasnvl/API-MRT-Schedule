@@ -1,7 +1,21 @@
-package main 
+package main
 
-import "fmt"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/ilyasnvl/API-MRT-Schedule/modules/station"
+)
 
 func main() {
-	fmt.Println("Hello world")
+	InitiateRouter()
+}
+
+func InitiateRouter() {
+	var (
+		router = gin.Default()
+		api    = router.Group("/v1/api")
+	)
+
+	station.Initiate(api)
+
+	router.Run(":8080")
 }
